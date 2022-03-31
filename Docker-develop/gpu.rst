@@ -53,3 +53,14 @@ docker run
 
   # --gpus 可以替代 -e NVIDIA_VISIBLE_DEVICES
   docker run -it --rm --gpus all -e NVIDIA_DRIVER_CAPABILITIES=compute,video,utility,graphics 镜像名 bash
+
+在容器中使用 NVIDIA GPU 进行可视化
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+docker run
+>>>>>>>>>>>>>>>
+.. code-block:: bash
+
+    xhost +
+    docker run -it --rm -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=:0 --gpus all \
+    -e NVIDIA_DRIVER_CAPABILITIES=compute,video,utility,graphics 镜像名 bash
